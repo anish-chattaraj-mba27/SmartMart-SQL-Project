@@ -1,0 +1,21 @@
+order_id,customer_id,employee_id,order_date,order_status,payment_method
+1001,1,2,2026-07-01,Completed,UPI
+1002,2,3,2026-07-02,Completed,Card
+1003,3,2,2026-07-03,Completed,UPI
+1004,4,5,2026-07-05,Completed,Cash
+1005,5,2,2026-07-08,Completed,Card
+1006,6,3,2026-07-11,Completed,UPI
+1007,7,5,2026-07-14,Completed,Net Banking
+1008,8,2,2026-07-17,Completed,UPI
+1009,9,3,2026-07-19,Completed,Cash
+1010,10,5,2026-07-22,Completed,Card
+1011,11,2,2026-07-25,Completed,UPI
+1012,12,3,2026-07-28,Completed,Card
+1013,1,2,2026-08-02,Completed,UPI
+1014,2,3,2026-08-06,Completed,Card
+1015,3,2,2026-08-09,Completed,Cash
+1016,4,5,2026-08-12,Completed,UPI
+1017,5,2,2026-08-16,Pending,UPI
+1018,6,3,2026-08-19,Cancelled,Card
+1019,7,5,2026-08-22,Completed,Net Banking
+1020,8,2,2026-08-25,Completed,UPI

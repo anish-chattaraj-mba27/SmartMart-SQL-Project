@@ -1,0 +1,13 @@
+product_id,product_name,category_id,supplier_id,unit_price,cost_price,is_active
+101,Basmati Rice 5kg,1,1,520,430,True
+102,Wheat Flour 5kg,1,1,260,210,True
+103,Cooking Oil 1L,1,1,155,125,True
+104,Green Tea 100g,1,1,185,140,True
+105,Mineral Water 1L,2,2,20,10,True
+106,Orange Juice 1L,2,2,110,78,True
+107,Shampoo 340ml,3,3,210,155,True
+108,Hand Wash 250ml,3,3,95,62,True
+109,Laundry Detergent 2kg,4,4,310,245,True
+110,Floor Cleaner 1L,4,4,145,105,True
+111,USB-C Cable,5,5,299,180,True
+112,Wireless Mouse,5,5,650,420,True

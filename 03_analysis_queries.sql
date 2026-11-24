@@ -176,21 +176,27 @@ ORDER BY customer_id;
 
 -- H. Business KPIs
 -- Q20. Overall sales KPIs (completed orders).
-SELECT COUNT(DISTINCT o.order_id) AS completed_orders,
-       COUNT(DISTINCT o.customer_id) AS purchasing_customers,
-       SUM(oi.quantity) AS units_sold,
-       ROUND(SUM(oi.quantity * oi.unit_price * (1 - oi.discount_pct/100.0))::numeric, 2) AS gross_sales_after_discount,
-       ROUND(AVG(order_total)::numeric, 2) AS average_order_value
-FROM orders o
-JOIN order_items oi ON o.order_id = oi.order_id
-JOIN (
-    SELECT o2.order_id,
-           SUM(oi2.quantity * oi2.unit_price * (1 - oi2.discount_pct/100.0)) AS order_total
-    FROM orders o2 JOIN order_items oi2 ON o2.order_id = oi2.order_id
-    WHERE o2.order_status = 'Completed'
-    GROUP BY o2.order_id
-) totals ON totals.order_id = o.order_id
-WHERE o.order_status = 'Completed';
+WITH order_totals AS (
+    SELECT o.order_id,
+           o.customer_id,
+           SUM(oi.quantity * oi.unit_price *
+               (1 - oi.discount_pct / 100.0)) AS order_total
+    FROM orders o
+    JOIN order_items oi ON o.order_id = oi.order_id
+    WHERE o.order_status = 'Completed'
+    GROUP BY o.order_id, o.customer_id
+)
+SELECT COUNT(*) AS completed_orders,
+       COUNT(DISTINCT customer_id) AS purchasing_customers,
+       (SELECT SUM(oi.quantity)
+        FROM orders o
+        JOIN order_items oi ON o.order_id = oi.order_id
+        WHERE o.order_status = 'Completed') AS units_sold,
+       ROUND(SUM(order_total)::numeric, 2)
+           AS gross_sales_after_discount,
+       ROUND(AVG(order_total)::numeric, 2)
+           AS average_order_value
+FROM order_totals;
 
 -- I. Transaction management demonstration
 -- Run this block separately to see ROLLBACK; quantity should remain unchanged.
